@@ -28,7 +28,7 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-		'plugins/axios'
+		'plugins/axios'	
   ],
   /*
   ** Nuxt.js dev-modules
@@ -39,7 +39,9 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
-		'@nuxtjs/axios'
+		'@nuxtjs/axios',
+		'@nuxtjs/vuetify',
+    '@nuxtjs/apollo'
   ],
   /*
   ** Build configuration
@@ -61,5 +63,18 @@ export default {
 	},
   proxy: {
     '/api/': { target: 'http://back:3000', pathRewrite: { '^/api/': '/' } }
+  },
+  apollo: {
+    clientConfigs: {
+      default: {
+        httpEndpoint: 'http://localhost:3000/graphql',
+				httpLinkOptions: {
+          fetchOptions: {
+            mode: 'cors' //Cors Needed for external Cross origins, need to allow headers from server
+          },
+          credentials: "omit" //must be omit to support application/json content type
+        }
+      }
+    }
   },
 }

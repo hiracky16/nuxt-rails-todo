@@ -1,0 +1,10 @@
+mutation($name: String!, $description: String!) {
+  createTask( input: { name: $name, description: $description }) {
+    task {
+      id
+      name
+      description
+      completed
+    }
+  }
+}

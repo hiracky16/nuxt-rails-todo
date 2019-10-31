@@ -1,0 +1,8 @@
+query {
+  tasks {
+    id
+    name
+    description
+    completed
+  }
+}

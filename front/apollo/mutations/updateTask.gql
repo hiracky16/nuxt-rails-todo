@@ -1,0 +1,10 @@
+mutation($id: ID!, $completed: Boolean!) {
+  updateTask( input: { id: $id, completed: $completed }) {
+    task {
+      id
+      name
+      description
+      completed
+    }
+  }
+}
