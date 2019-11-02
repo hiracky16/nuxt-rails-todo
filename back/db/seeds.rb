@@ -14,3 +14,9 @@ Task.delete_all
     completed: false
   )
 end
+
+User.create(
+  email: 'test@example.com',
+  password: 'xxxxxxxx',
+  password_confirmation: 'xxxxxxxx'
+)
