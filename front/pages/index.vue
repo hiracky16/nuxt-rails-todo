@@ -53,6 +53,7 @@ import deleteTask from '~/apollo/mutations/deleteTask'
 import updateTask from '~/apollo/mutations/updateTask'
 
 export default {
+  middleware: 'auth',
   data() {
     return {
       tasks: {},

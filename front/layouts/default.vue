@@ -1,7 +1,9 @@
 <template>
   <v-app>
-    <v-toolbar fixed app>
+    <v-toolbar fixed>
       <v-toolbar-title v-text="title" />
+      <div class="flex-grow-1" />
+      <span v-if="loggedIn" @click="logout()">Logout</span>
     </v-toolbar>
     <v-content>
       <nuxt />
@@ -19,6 +21,22 @@ export default {
   data() {
     return {
       title: 'AKB Test'
+    }
+  },
+  computed: {
+    loggedIn() {
+      return this.$auth.loggedIn
+    }
+  },
+  methods: {
+    async logout() {
+      try {
+        await this.$auth.logout()
+        await this.$apolloHelpers.onLogout()
+        this.$router.push('/login')
+      } catch (e) {
+        window.console.log(e)
+      }
     }
   }
 }
