@@ -33,5 +33,13 @@ module App
     config.api_only = true
 		config.middleware.use ActionDispatch::Flash
 		config.x.cors_allowed_origins = ENV.fetch('CORS_ALLOWED_ORIGINS', 'http://localhost:8080')
+		# APIの読み込み
+	config.paths.add File.join('app', 'apis'), glob: File.join('**', '*.rb')
+	config.autoload_paths += Dir[Rails.root.join('app', 'apis', '*')]
+
+	# Grape+JBuilderを使うための設定
+	config.middleware.use(Rack::Config) do |env|
+  	env['api.tilt.root'] = Rails.root.join 'app', 'views', 'api'
+end
   end
 end

@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_31_233712) do
+ActiveRecord::Schema.define(version: 2019_11_10_113154) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "groups", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "idols", force: :cascade do |t|
+    t.string "name"
+    t.bigint "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_idols_on_group_id"
+  end
 
   create_table "tasks", force: :cascade do |t|
     t.string "name"
@@ -30,4 +44,5 @@ ActiveRecord::Schema.define(version: 2019_10_31_233712) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "idols", "groups"
 end

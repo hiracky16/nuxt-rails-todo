@@ -25,6 +25,7 @@ gem 'puma', '~> 3.11'
 gem 'graphql'
 gem 'rack-cors'
 gem 'knock'
+gem 'grape'
 
 gem 'bcrypt', '~> 3.1.7'
 
